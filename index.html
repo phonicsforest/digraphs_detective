@@ -157,6 +157,16 @@ button { cursor: pointer; }
   color: var(--muted);
 }
 
+/* 分音節虛線（用來顯示書入面嗰條線） */
+.syllable-split {
+  display: inline-block;
+  width: 0;
+  border-left: 2px dotted #9ca3af;
+ margin-left: -0.01em;
+  margin-right: -0.11em;  height: 0.9em;           /* ← 線更短，不會太突出 */
+  vertical-align: 0.05em;  /* ← 微微向下，貼近字母中心 */
+}
+
 .hidden { display: none !important; }
 
 /* Finish screen */
@@ -255,22 +265,45 @@ button { cursor: pointer; }
   function show(el, yes) { el.classList.toggle('hidden', !yes); }
   function setFeedback(msg) { feedback.textContent = msg || ''; }
 
-  function renderWordTo(container, word, gidx) {
-    container.innerHTML = '';
-    const wrap = document.createElement('div');
-    wrap.className = 'word';
-    wrap.dataset.gidx = String(gidx);
+function renderWordTo(container, item, gidx) {
+  container.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'word';
+  wrap.dataset.gidx = String(gidx);
 
-    for (let i = 0; i < word.length; i++) {
-      const sp = document.createElement('span');
-      sp.className = 'ch';
-      sp.dataset.lidx = String(i);
-      sp.textContent = word[i];
-      if (round.selections[gidx]?.has(i)) sp.classList.add('selected');
-      wrap.appendChild(sp);
+  const word    = item.word;                    // 真正用來 marking / answer 嘅字
+  const display = item.display || item.word;    // 用來顯示（可能有 ‧）
+
+  let letterIndex = 0; // 對應 word 裏面嘅 index（0,1,2,...）
+
+  for (let i = 0; i < display.length; i++) {
+    const ch = display[i];
+
+    // 如果係分音節符號（你而家用 U+2027 "‧"）
+    if (ch === '‧' || ch === '|' || ch === '-') {
+      const bar = document.createElement('span');
+      bar.className = 'syllable-split';
+      wrap.appendChild(bar);
+      continue;
     }
-    container.appendChild(wrap);
+
+    // 平時正常字母：建立一個 .ch，可以被 click / 選中
+    const sp = document.createElement('span');
+    sp.className = 'ch';
+    sp.dataset.lidx = String(letterIndex);
+    sp.textContent = ch;
+
+    // 如果之前已經揀過呢個位，要加返 selected class
+    if (round.selections[gidx]?.has(letterIndex)) {
+      sp.classList.add('selected');
+    }
+
+    wrap.appendChild(sp);
+    letterIndex++;
   }
+
+  container.appendChild(wrap);
+}
 
   function renderGrid() {
     gridEl.innerHTML = '';
@@ -280,7 +313,7 @@ button { cursor: pointer; }
       tile.dataset.gidx = String(gidx);
 
       const inner = document.createElement('div');
-      renderWordTo(inner, item.word, gidx);
+renderWordTo(inner, item, gidx);
       tile.appendChild(inner);
 
       const tick = document.createElement('div');
@@ -538,7 +571,8 @@ function finishWithMistakeReport() {
   show(reportArea, true);
   show(topBar, false);
 
-  finishLesson.textContent = `Lesson ${currentLesson}`;
+const displayNo = getDisplayLessonNumber(currentLesson);
+finishLesson.textContent = `Lesson ${displayNo}`;
 
   const wrongAnswers = Array.from(mistakeAnswerTypes);
   if (!wrongAnswers.length) {
@@ -548,6 +582,14 @@ function finishWithMistakeReport() {
       .map(a => `<div>${a}</div>`)
       .join("");
   }
+}
+
+function getDisplayLessonNumber(internalLesson) {
+  let label = internalLesson + 7;
+  if (label >= 9) {
+    label += 1;
+  }
+  return label;
 }
 
 // 正常 digraph 用：key = "sh" / "st" / "sp" ...
@@ -1035,14 +1077,9 @@ function initSelectors() {
     const opt = document.createElement('option');
     opt.value = String(i);
 
-    // 內部 Lesson 1→ 外面顯示 8
-    // 由 8 開始，並且跳過 9
-    let label = i + 7;     // 1→8, 2→9, 3→10, ...
-    if (label >= 9) {
-      label += 1;          // 跳過 9：2→10, 3→11, 4→12, 5→13, 6→14...
-    }
-
+    const label = getDisplayLessonNumber(i);
     opt.textContent = `Lesson ${label}`;
+
     if (i === 1) opt.selected = true;
     lessonSel.appendChild(opt);
   }
