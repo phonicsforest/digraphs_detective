@@ -1,7 +1,7 @@
 const LESSONS = {
   1: {
     1: [
-      { word: "batch",  answer: "tch" },
+      { word: "abatch",  answer: "tch" },
       { word: "bath",   answer: "th"  },
       { word: "french", answer: "ch"  },
       { word: "much",   answer: "ch"  },
