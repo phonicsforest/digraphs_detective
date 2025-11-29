@@ -135,11 +135,11 @@ LESSONS[3] = {
     { word: "rick",  answer: "ic" },
     { word: "chick", answer: "ch,ic" },
     { word: "dig",   answer: "ig" },
-    { word: "digs",  answer: "ig" },
     { word: "zig",   answer: "ig" },
     { word: "kick",  answer: "ic" },
     { word: "big",   answer: "ig" },
     { word: "crick", answer: "ic" },
+    { word: "migs",    answer: "ig" },
     { word: "keg",   answer: "eg" },
     { word: "trick", answer: "ic" },
   ],
@@ -152,9 +152,9 @@ LESSONS[3] = {
     { word: "brig",    answer: "ig" },
     { word: "remix",   answer: "ix" },
     { word: "afflict", answer: "ic" },
-    { word: "migs",    answer: "ig" },
     { word: "reg",     answer: "eg" },
     { word: "nix",     answer: "ix" },
+    { word: "digs",  answer: "ig" },
     { word: "zig",     answer: "ig" },
     { word: "egg",    answer: "eg" },
     { word: "flick",  answer: "ic" },
@@ -616,11 +616,11 @@ LESSONS[12] = {
     { word: "corn",  answer: "or" },
     { word: "fray",  answer: "ay" },
     { word: "brief", answer: "ie" },
-    { word: "lewd",  answer: "ew" },
+    { word: "lewd",  answer: "lew" },
     { word: "wain",  answer: "ai" },
     { word: "they",  answer: "ey" },
     { word: "lord",  answer: "or" },
-    { word: "stay",  answer: "ay" },
+    { word: "stay",  answer: "st,ay" },
     { word: "soy",   answer: "oy" },
     { word: "point", answer: "oi" },
     { word: "crew",  answer: "rew" }
@@ -631,9 +631,9 @@ LESSONS[12] = {
     { word: "tort",  answer: "or" },
     { word: "prey",  answer: "ey" },
     { word: "boil",  answer: "oi" },
-    { word: "strew", answer: "ew" },
+    { word: "strew", answer: "st,ew" },
     { word: "bard",  answer: "ar" },
-    { word: "blew",  answer: "ew" },
+    { word: "blew",  answer: "lew" },
     { word: "say",   answer: "ay" },
     { word: "waif",  answer: "ai" },
     { word: "maid",  answer: "ai" },
@@ -642,13 +642,13 @@ LESSONS[12] = {
   ],
 
   3: [
-    { word: "scorn", answer: "or" },
-    { word: "storm", answer: "or" },
+    { word: "scorn", answer: "sc,or" },
+    { word: "storm", answer: "st,or" },
     { word: "wail",  answer: "ai" },
     { word: "joy",   answer: "oy" },
     { word: "tarn",  answer: "ar" },
     { word: "make",  answer: "a_e" },
-    { word: "flew",  answer: "ew" },
+    { word: "flew",  answer: "lew" },
     { word: "play",  answer: "ay" },
     { word: "boy",   answer: "oy" },
     { word: "yard",  answer: "ar" },
@@ -668,7 +668,7 @@ LESSONS[12] = {
     { word: "vain",  answer: "ai" },
     { word: "fain",  answer: "ai" },
     { word: "gain",  answer: "ai" },
-    { word: "thorn", answer: "or" }
+    { word: "thorn", answer: "th,or" }
   ]
 };
 
@@ -711,7 +711,7 @@ LESSONS[13] = {
     { word: 'swab',  answer: 'wa' },
     { word: 'thaw',  answer: 'th,aw' },
     { word: 'law',   answer: 'aw' },
-    { word: 'waist', answer: 'wa,ai' },
+    { word: 'waist', answer: 'ai' },
     { word: 'fey',   answer: 'ey' },
     { word: 'draw',  answer: 'aw' },
     { word: 'haunt', answer: 'au' },
@@ -807,11 +807,11 @@ LESSONS[15] = {
     { word: "mind",  answer: "ind"  },
     { word: "sloop", answer: "oo"   },
     { word: "swine", answer: "i_e"  },
-    { word: "stalk", answer: "al"   },
+    { word: "stalk", answer: "st,al"   },
     { word: "slaw",  answer: "aw"   },
     { word: "flaw",  answer: "aw"   },
     { word: "claus", answer: "au"   },
-    { word: "coach", answer: "oa"   },
+    { word: "coach", answer: "oa,ch"   },
     { word: "mold",  answer: "old"  },
     { word: "coy",   answer: "oy"   },
     { word: "tow",   answer: "ow"   },
@@ -821,12 +821,12 @@ LESSONS[15] = {
   2: [
     { word: "snow",  answer: "ow"   },
     { word: "loan",  answer: "oa"   },
-    { word: "churn", answer: "ur"   },
+    { word: "churn", answer: "ch,ur"   },
     { word: "soap",  answer: "oa"   },
     { word: "crook", answer: "ook"  },
     { word: "prey",  answer: "ey"   },
     { word: "reem",  answer: "ee"   },
-    { word: "stall", answer: "al"   },
+    { word: "stall", answer: "st,al"   },
     { word: "mind",  answer: "ind"  },
     { word: "fraud", answer: "au"   },
     { word: "bind",  answer: "ind"  },
@@ -836,9 +836,9 @@ LESSONS[15] = {
   // Level 3 = B + D 組
   3: [
     // B 組（page 50 下半）
-    { word: "spoon", answer: "oo"   },
+    { word: "spoon", answer: "sp,oo"   },
     { word: "blind", answer: "ind"  },
-    { word: "look",  answer: "oo"   }, // 用 oo，rook 俾 ook
+    { word: "look",  answer: "ook"   }, // 用 oo，rook 俾 ook
     { word: "jowl",  answer: "ow"   },
     { word: "ick",   answer: "ic"   },
     { word: "law",   answer: "aw"   },
@@ -847,10 +847,10 @@ LESSONS[15] = {
     { word: "hall",  answer: "al"   },
     { word: "daw",   answer: "aw"   },
     { word: "heed",  answer: "ee"   },
-    { word: "stunk", answer: ""     }, // 冇 target，唔需要圈
+    { word: "stunk", answer: "st"     }, // 冇 target，唔需要圈
 
     // D 組（page 51 下半）
-    { word: "spick", answer: "ic"   },
+    { word: "spick", answer: "sp,ic"   },
     { word: "troy",  answer: "oy"   },
     { word: "rook",  answer: "ook"  },
     { word: "cloak", answer: "oa"   },
@@ -860,7 +860,7 @@ LESSONS[15] = {
     { word: "coal",  answer: "oa"   },
     { word: "haul",  answer: "au"   },
     { word: "fold",  answer: "old"  },
-    { word: "child", answer: "ild"  },
+    { word: "child", answer: "ch,ild"  },
     { word: "lawn",  answer: "aw"   },
   ],
 };
@@ -929,4 +929,599 @@ LESSONS[16] = {
     { word: "gear",  answer: "ear" }
   ]
 };
+
+LESSONS[17] = {
+  1: [
+    { word: "sook",   display: "sook",    answer: "ook"   },
+    { word: "donkey", display: "don‧key", answer: "ey"   },
+    { word: "nancy",  display: "nan‧cy",  answer: "y"    },
+    { word: "luncy",  display: "lun‧cy",  answer: "y"    },
+    { word: "happy",  display: "hap‧py",  answer: "y"    },
+    { word: "show",   display: "show",    answer: "sh,ow"   },
+    { word: "foamy",  display: "foa‧my",  answer: "oa,y"   },
+    { word: "whoop",  display: "whoop",   answer: "wh,oo"   },
+    { word: "nose",   display: "nose",    answer: "o_e"  },
+    { word: "thrown", display: "thrown",  answer: "th,ow"   },
+    { word: "year",   display: "year",    answer: "ear"  },
+    { word: "gorp",   display: "gorp",    answer: "or"   }
+  ],
+
+  2: [
+    { word: "treat",  display: "treat",    answer: "ea"   },
+    { word: "force",  display: "force",    answer: "or"   },
+    { word: "Disney", display: "Dis‧ney",  answer: "ey"   },
+    { word: "Sidney", display: "Sid‧ney",  answer: "ey"   },
+    { word: "peace",  display: "peace",    answer: "ea"   },
+    { word: "town",   display: "town",     answer: "ow"   },
+    { word: "sleepy", display: "sleep‧y",  answer: "ee,y"    },
+    { word: "throw",  display: "throw",    answer: "th,ow"   },
+    { word: "troop",  display: "troop",    answer: "oo"   },
+    { word: "nick",   display: "nick",     answer: "ic"   },
+    { word: "funny",  display: "fun‧ny",   answer: "y"    },
+    { word: "spear",  display: "spear",    answer: "sp,ear"  }
+  ],
+
+  3: [
+    { word: "cheer",  display: "cheer",    answer: "ch,meer"  },
+    { word: "gloat",  display: "gloat",    answer: "oa"   },
+    { word: "broom",  display: "broom",    answer: "oo"   },
+    { word: "dear",   display: "dear",     answer: "ear"  },
+    { word: "prawn",  display: "prawn",    answer: "aw"   },
+    { word: "deer",   display: "deer",     answer: "eer"  },
+    { word: "sunny",  display: "sun‧ny",   answer: "y"    },
+    { word: "cheek",  display: "cheek",    answer: "ch,ee"   },
+    { word: "blow",   display: "blow",     answer: "ow"   },
+    { word: "stall",  display: "stall",    answer: "st,al"   },
+    { word: "dirty",  display: "dir‧ty",   answer: "ir,y"   },
+    { word: "near",   display: "near",     answer: "ear"  },
+
+    { word: "brood",  display: "brood",    answer: "oo"   },
+    { word: "now",    display: "now",      answer: "ow"   },
+    { word: "grey",   display: "grey",     answer: "ey"   },
+    { word: "loan",   display: "loan",     answer: "oa"   },
+    { word: "howl",   display: "howl",     answer: "ow"   },
+    { word: "seer",   display: "seer",     answer: "eer"  },
+    { word: "mickey", display: "mic‧key",  answer: "ic,ey"   },
+    { word: "body",   display: "bo‧dy",    answer: "y"    },
+    { word: "gold",   display: "gold",     answer: "old"  },
+    { word: "mail",   display: "mail",     answer: "ai"   },
+    { word: "floppy", display: "flop‧py",  answer: "y"    },
+    { word: "teal",   display: "teal",     answer: "ea"   }
+  ]
+};
+
+LESSONS[18] = {
+  1: [
+    { word: "cell",   answer: "ce"   },
+    { word: "raw",    answer: "aw"   },
+    { word: "dais",   answer: "ai"   },
+    { word: "barn",   answer: "ar"   },
+    { word: "herb",   answer: "er"   },
+    { word: "mail",   answer: "ai"   },
+    { word: "torch",  answer: "or,ch"   },
+    { word: "city",   display: "ci‧ty",   answer: "ci,y" },
+    { word: "bleed",  answer: "ee"   },
+    { word: "slosh",  answer: "sh"   },
+    { word: "gall",   answer: "al"   },
+    { word: "wow",    answer: "ow"   }
+  ],
+  2: [
+    { word: "mirth",  answer: "ir,th"   },
+    { word: "force",  answer: "or,ce"   },
+    { word: "scoot",  answer: "sc,oo"   },
+
+    { word: "sold",   answer: "old"  },
+    { word: "cheek",  answer: "ch,ee"   },
+    { word: "toy",    answer: "oy"   },
+
+    { word: "bake",   answer: "a_e"  },
+    { word: "throw",  answer: "th,ow"   },
+    { word: "peace",  answer: "ea,ce"   },
+
+    { word: "mace",   answer: "ace"   },
+    { word: "reem",   answer: "ee"   },
+    { word: "fraud",  answer: "au"   }
+  ],
+
+  3: [
+    { word: "churn",   answer: "ur"   },
+    { word: "civic",   display: "ci‧vic",  answer: "ci,ic" },
+    { word: "strine",  answer: "st,i_e"  },
+
+    { word: "mind",    answer: "ind"  },
+    { word: "loaf",    answer: "oa"   },
+    { word: "woad",    answer: "oa"   },
+
+    { word: "soy",     answer: "oy"   },
+    { word: "weed",    answer: "ee"   },
+    { word: "pace",    answer: "ace"   },
+
+    { word: "space",   answer: "sp,ace"   },
+    { word: "dray",    answer: "ay"   },
+    { word: "straw",   answer: "st,aw"   },
+
+    { word: "bite",    answer: "i_e"  },
+    { word: "cent",    answer: "ce"   },
+    { word: "jaunt",   answer: "au"   },
+
+    { word: "bloat",   answer: "oa"   },
+    { word: "scratch", answer: "sc,tch"  },
+    { word: "glean",   answer: "ea"   },
+
+    { word: "moon",    answer: "oo"   },
+    { word: "whirl",   answer: "wh,ir"   },
+    { word: "fleecy",  display: "flee‧cy", answer: "ee,cy" },
+
+    { word: "sauce",   answer: "au,ce"   },
+    { word: "graph",   answer: "ph"   },
+    { word: "rule",    answer: "ru_e" }
+  ]
+};
+
+LESSONS[19] = {
+  1: [
+    { word: "hedge",  answer: "dge" },
+    { word: "new",    answer: "ew"  },
+    { word: "queen",  answer: "qu,ee"  },
+    { word: "when",   answer: "wh"  },
+    { word: "free",   answer: "ee"  },
+    { word: "guide",  answer: "gu,i_e"  },
+    { word: "tooth",  answer: "oo,th"  },
+    { word: "pork",   answer: "or"  },
+    { word: "troy",   answer: "oy"  },
+    { word: "write",  answer: "wr,i_e"  },
+    { word: "cage",   answer: "age"  },
+    { word: "fur",    answer: "ur"  }
+  ],
+
+  2: [
+    { word: "they",   answer: "th,ey"  },
+    { word: "bilge",  answer: "ge"  },
+    { word: "brew",   answer: "rew"  },
+    { word: "road",   answer: "oa"  },
+    { word: "vein",   answer: "ei"  },
+    { word: "herb",   answer: "er"  },
+    { word: "pie",    answer: "ie"  },
+    { word: "deer",   answer: "eer"  },
+    { word: "tar",    answer: "ar"  },
+    { word: "judge",  answer: "dge" },
+    { word: "wrong",  answer: "wr,ng"  },
+    { word: "large",  answer: "ar,ge"  }
+  ],
+
+  3: [
+    { word: "cheer",  answer: "ch,eer" },
+    { word: "charge", answer: "ch,ar,ge"  },
+    { word: "first",  answer: "ir"  },
+    { word: "bold",   answer: "old" },
+    { word: "car",    answer: "ar"  },
+    { word: "urge",   answer: "ur,ge"  },
+    { word: "child",  answer: "ch,ild"  },
+    { word: "flew",   answer: "lew"  },
+    { word: "say",    answer: "ay"  },
+    { word: "field",  answer: "ie"  },
+    { word: "wedge",  answer: "dge" },
+    { word: "bee",    answer: "ee"  },
+    { word: "blue",   answer: "ue"  },
+    { word: "read",   answer: "ea"  },
+    { word: "bridge", answer: "dge" },
+    { word: "large",  answer: "ar,ge"  },
+    { word: "wing",   answer: "ing" },
+    { word: "soil",   answer: "oi"  },
+    { word: "cow",    answer: "ow"  },
+    { word: "mild",   answer: "ild" },
+    { word: "hear",   answer: "ear" },
+    { word: "knock",  answer: "kn"  },
+    { word: "gem",    answer: "ge"  },
+    { word: "rain",   answer: "ai"  }
+  ]
+};
+LESSONS[20] = {
+  1: [ // 左上
+    { word: "champ", answer: "ch" },
+    { word: "bile", answer: "i_e" },
+    { word: "wright", answer: "wr,ight" },
+    { word: "round", answer: "ou" },
+    { word: "fancy", answer: "cy", wordDisplay: "fan‧cy" },
+    { word: "pace", answer: "ace" },
+    { word: "night", answer: "ight" },
+    { word: "pride", answer: "i_e" },
+    { word: "look", answer: "ook" },
+    { word: "skid", answer: "sk" },
+    { word: "plough", answer: "ough" },
+    { word: "dodge", answer: "dge" }
+  ],
+
+  2: [ // 左下
+    { word: "cadge", answer: "dge" },
+    { word: "mesh", answer: "sh" },
+    { word: "blight", answer: "ight" },
+    { word: "jive", answer: "i_e" },
+    { word: "tight", answer: "ight" },
+    { word: "cope", answer: "o_e" },
+    { word: "splay", answer: "sp,ay" },
+    { word: "wench", answer: "ch" },
+    { word: "high", answer: "igh" },
+    { word: "bough", answer: "ough" },
+    { word: "army", answer: "ar,y", wordDisplay: "ar‧my" },
+    { word: "noun", answer: "ou" }
+  ],
+
+  3: [ // 右上 + 右下 = Level 3
+    { word: "hush", answer: "sh" },
+    { word: "flight", answer: "ight" },
+    { word: "naughty", answer: "augh,y", wordDisplay: "naugh‧ty" }, // augh = ough family
+    { word: "fight", answer: "ight" },
+    { word: "cent", answer: "ce" },
+    { word: "thigh", answer: "th,igh" },
+    { word: "sticky", answer: "st,ic,y", wordDisplay: "stic‧ky" },
+    { word: "foul", answer: "ou" },
+    { word: "forge", answer: "or,ge" },
+    { word: "bought", answer: "ought" },
+    { word: "budge", answer: "dge" },
+    { word: "caught", answer: "au,gh" },
+
+    { word: "woody", answer: "oo,y", wordDisplay: "woo‧dy" },
+    { word: "out", answer: "ou" },
+    { word: "fright", answer: "ight" },
+    { word: "seam", answer: "ea" },
+    { word: "bold", answer: "old" },
+    { word: "aught", answer: "au,gh" },
+    { word: "space", answer: "sp,ace" },
+    { word: "fought", answer: "ought" },
+    { word: "sigh", answer: "igh" },
+    { word: "thrust", answer: "th" },
+    { word: "croon", answer: "oo" },
+    { word: "high", answer: "igh" }
+  ]
+};
+
+LESSONS[21] = {
+  1: [
+    { word: "stone",  answer: "st,o_e" },
+    { word: "fair",   answer: "air" },
+    { word: "twirl",  answer: "ir" },
+    { word: "fowl",   answer: "ow" },
+    { word: "yearn",  answer: "ear" },
+    { word: "wear",   answer: "ear" },
+    { word: "nudge",  answer: "dge" },
+    { word: "ear",    answer: "ear" },
+    { word: "lair",   answer: "air" },
+    { word: "breed",  answer: "ee" },
+    { word: "gout",   answer: "ou" },
+    { word: "thumb",  answer: "th" }
+  ],
+  2: [
+    { word: "scrum",    answer: "sc" },
+    { word: "hare",     answer: "are" },
+    { word: "loam",     answer: "oa" },
+    { word: "forecast", answer: "or", wordDisp: "fore‧cast" },
+    { word: "scope",    answer: "sc,o_e" },
+    { word: "share",    answer: "sh,are" },
+    { word: "fear",     answer: "ear" },
+    { word: "sore",     answer: "or" },
+    { word: "cinch",    answer: "ci,ch" },
+    { word: "vine",     answer: "i_e" },
+    { word: "trace",    answer: "ace" },
+    { word: "eve",      answer: "e_e" }
+  ],
+  3: [
+    { word: "hedge",   answer: "dge" },
+    { word: "role",    answer: "o_e" },
+    { word: "queen",   answer: "qu,ee" },
+    { word: "when",    answer: "wh" },
+    { word: "pearl",   answer: "ear" },
+    { word: "guide",   answer: "gu,i_e" },
+    { word: "tooth",   answer: "oo,th" },
+    { word: "pork",    answer: "or" },
+    { word: "hair",    answer: "air" },
+    { word: "write",   answer: "wr,i_e" },
+    { word: "spare",   answer: "sp,are" },
+    { word: "fur",     answer: "ur" },
+
+    { word: "they",    answer: "th,ey" },
+    { word: "bilge",   answer: "ge" },
+    { word: "search",  answer: "ear,ch" },
+    { word: "earn",    answer: "ear" },
+    { word: "vein",    answer: "ei" },
+    { word: "fair",    answer: "air" },
+    { word: "fare",    answer: "are" },
+    { word: "flute",   answer: "lu_e" },
+    { word: "tar",     answer: "ar" },
+    { word: "judge",   answer: "dge" },
+    { word: "wrong",   answer: "wr,ng" },
+    { word: "fridge",  answer: "dge" }
+  ]
+};
+
+LESSONS[23] = {
+  1: [
+    { word: "ought", answer: "ought" },
+    { word: "spire", answer: "sp,ire"   },
+    { word: "yore",  answer: "or"    },
+    { word: "world", answer: "wor"   },
+    { word: "rain",  answer: "ai"    },
+    { word: "pore",  answer: "or"    },
+    { word: "seal",  answer: "ea"    },
+    { word: "tore",  answer: "or"    },
+    { word: "warm",  answer: "war"   },
+    { word: "shoot", answer: "sh,oo"    },
+    { word: "goat",  answer: "oa"    },
+    { word: "wart",  answer: "war"   }
+  ],
+
+  2: [
+    { word: "bight", answer: "ight" },
+    { word: "dire",  answer: "ire"  },
+    { word: "badge", answer: "dge"  },
+    { word: "sauce", answer: "au,ce"   },
+    { word: "mouse", answer: "ou"   },
+    { word: "learn", answer: "ear"  },
+    { word: "lunge", answer: "ge"   },
+    { word: "warp",  answer: "war"  },
+    { word: "fire",  answer: "ire"  },
+    { word: "bread", answer: "ea"   },
+    { word: "mire",  answer: "ire"  },
+    { word: "spare", answer: "sp,are"  }
+  ],
+  3: [
+    { word: "tire",   answer: "ire"   },
+    { word: "mole",   answer: "o_e"   },
+    { word: "queen",  answer: "qu,ee"    },
+    { word: "bought", answer: "ought" },
+    { word: "hire",   answer: "ire"   },
+    { word: "ward",   answer: "war"   },
+    { word: "booth",  answer: "oo,th"    },
+    { word: "pork",   answer: "or"    },
+    { word: "hair",   answer: "air"   },
+    { word: "cell",   answer: "ce"    },
+    { word: "take",   answer: "a_e"   },
+    { word: "wire",   answer: "ire"   },
+    { word: "warn",   answer: "war"   },
+    { word: "bilge",  answer: "ge"    },
+    { word: "right",  answer: "ight"  },
+    { word: "earn",   answer: "ear"   },
+    { word: "vein",   answer: "ei"    },
+    { word: "fair",   answer: "air"   },
+    { word: "cake",   answer: "a_e"   },
+    { word: "rude",   answer: "ru_e"   },
+    { word: "dwarf",  answer: "war"   },
+    { word: "hedge",  answer: "dge"    },
+    { word: "wring",  answer: "wr,ing"    },
+    { word: "mole",   answer: "o_e"   }
+  ]
+};
+
+LESSONS[24] = {
+  1: [
+    { word: "wool",   answer: "oo" },
+    { word: "threat", answer: "th,ea" },
+    { word: "cellar", display: "ce‧llar", answer: "ce,ar" },
+    { word: "harbor", display: "har‧bor", answer: "ar,or" },
+    { word: "jeer",   answer: "eer" },
+    { word: "saucy", display: "sau.cy", answer: "au,cy" },
+    { word: "curly", display: "cur.ly", answer: "ur,y" },
+    { word: "orca",  display: "or‧ca", answer: "or,a" },
+    { word: "pool",   answer: "oo" },
+    { word: "food",   answer: "oo" },
+    { word: "nurse",  answer: "ur" },
+    { word: "dearth", display: "dearth", answer: "ear,th" }
+  ],
+  2: [
+    { word: "tooth",  answer: "oo,th" },
+    { word: "thumb",  answer: "th" },
+    { word: "tote",   answer: "o_e" },
+    { word: "glow",   answer: "ow" },
+    { word: "letter", display: "let.ter", answer: "er" },
+    { word: "Elsa",  display: "El‧sa", answer: "a" },
+    { word: "grime",  answer: "i_e" },
+    { word: "rear",   answer: "ear" },
+    { word: "warm",   answer: "war" },
+    { word: "bough",  answer: "ou,gh" },
+    { word: "cleat",  answer: "ea" },
+    { word: "oak",    answer: "oa" }
+  ],
+  3: [
+    { word: "took", answer: "ook" },
+    { word: "fleecy", display: "flee‧cy",  answer: "ee,cy" },
+    { word: "mind",   answer: "ind" },
+    { word: "boart", answer: "oar" },
+    { word: "such",   answer: "ch" },
+    { word: "purge",   answer: "ur,ge" },
+    { word: "bosh",   answer: "sh" },
+    { word: "doctor", display: "doc‧tor",    answer: "or" },
+    { word: "hoarse",   answer: "oar" },
+    { word: "smudge",  answer: "dge" },
+    { word: "nowt", answer: "ow" },
+    { word: "chair",  answer: "ch,air" },
+    { word: "actor", display: "act‧or", answer: "or" },
+    { word: "glide", answer: "i_e" },
+    { word: "smear", answer: "ear" },
+    { word: "drown", answer: "ow" },
+    { word: "bout",  answer: "ou" },
+    { word: "skim",  answer: "sk" },
+    { word: "soar",  answer: "oar" },
+    { word: "wick",  answer: "ic" },
+    { word: "scoop", answer: "sc,oo" },
+    { word: "moan",  answer: "oa" },
+    { word: "row",   answer: "ow" },
+    { word: "sailor", display: "sai‧lor", answer: "ai,or" }
+  ]
+};
+
+LESSONS[25] = {
+  1: [
+    { word: "mission", display: "mis‧sion", answer: "sion" },
+    { word: "kite",                     answer: "i_e"  },
+    { word: "walt",                     answer: "al"   },
+    { word: "oyster", display: "oy‧ster",  answer: "oy"   },
+    { word: "fraud",                    answer: "au"   },
+    { word: "fave",                     answer: "a_e"  },
+    { word: "choke",                    answer: "o_e"  },
+    { word: "caution", display: "cau‧tion", answer: "tion" },
+    { word: "judge",                    answer: "dge"  },
+    { word: "dear",                     answer: "ear"  },
+    { word: "rind",                     answer: "ind"  },
+    { word: "gate",                     answer: "a_e"  }
+  ],
+
+  2: [
+    { word: "author",  display: "au‧thor",  answer: "au"   },
+    { word: "troy",                      answer: "oy"   },
+    { word: "swarm",                     answer: "ar"   },
+    { word: "slick",                     answer: "ic"   },
+    { word: "drink",                     answer: "ink"  },
+    { word: "hoard",                     answer: "oar"  },
+    { word: "mansion", display: "man‧sion", answer: "sion" },
+    { word: "foot",                      answer: "oo"   },
+    { word: "fission", display: "fis‧sion", answer: "sion" },
+    { word: "tear",                      answer: "ear"  },
+    { word: "child",                     answer: "ild"  },
+    { word: "work",                      answer: "wor"  }
+  ],
+
+  3: [
+    { word: "flower",  display: "flow‧er",   answer: "ow"   },
+    { word: "lodge",                     answer: "dge"  },
+    { word: "sloop",                     answer: "oo"   },
+    { word: "varnish", display: "var‧nish", answer: "ar"   },
+    { word: "session", display: "ses‧sion", answer: "sion" },
+    { word: "slaw",                      answer: "aw"   },
+    { word: "mold",                      answer: "old"  },
+    { word: "claus",                     answer: "au"   },
+    { word: "portion", display: "por‧tion", answer: "tion" },
+    { word: "deem",                      answer: "ee"   },
+    { word: "mercy",   display: "mer‧cy",   answer: "er"   },
+    { word: "south",                     answer: "ou"   },
+    { word: "earn",                      answer: "ear"  },
+    { word: "grey",                      answer: "ey"   },
+    { word: "proof",                     answer: "oo"   },
+    { word: "tension", display: "ten‧sion", answer: "sion" },
+    { word: "section", display: "sec‧tion", answer: "tion" },
+    { word: "mouth",                     answer: "ou"   },
+    { word: "ick",                       answer: "ic"   },
+    { word: "with",                      answer: "th"   },
+    { word: "stunk",                     answer: "st"   },
+    { word: "feed",                      answer: "ee"   },
+    { word: "trick",                     answer: "ic"   },
+    { word: "tripe",                     answer: "i_e"  }
+  ]
+};
+
+LESSONS[26] = {
+  1: [
+    { word: "scurf",   answer: "sc,ur"    },
+    { word: "speak",   answer: "sp,ea"    },
+    { word: "tray",    answer: "ay"    },
+    { word: "happy", display: "hap‧py",  answer: "y"     },
+    { word: "head",    answer: "ea"    },
+    { word: "skip",    answer: "sk"    },
+    { word: "gild",    answer: "ild"   },
+    { word: "auto", display: "au‧to",   answer: "au,o"    },
+    { word: "cellar", display: "ce‧llar", answer: "ce,ar"    },
+    { word: "action", display: "ac‧tion", answer: "tion"  },
+    { word: "elbow", display: "el‧bow",  answer: "ow"    },
+    { word: "corpse",  answer: "or"}
+  ],
+
+  2: [
+    { word: "beggar", display: "beg‧gar", answer: "eg,ar"    },
+    { word: "hook",    answer: "ook"    },
+    { word: "widow",   answer: "ow"    },
+    { word: "cheddar", display: "ched‧dar", answer: "ch,ar"   },
+    { word: "swallow", display: "swa‧llow", answer: "wa,ow"   },
+    { word: "wort",     answer: "wor"  },
+    { word: "sight",    answer: "ight"  },
+    { word: "verdict", display: "ver‧dict", answer: "er,ic"   },
+    { word: "hippo", display: "hip‧po",   answer: "o"    },
+    { word: "pleat",    answer: "ea"   },
+    { word: "shadow", display: "sha‧dow",  answer: "sh,ow"   },
+    { word: "cargo", display: "car‧go",   answer: "ar,o"    }
+  ],
+
+  3: [
+    { word: "old",       answer: "old"   },
+    { word: "fore",      answer: "or"    },
+    { word: "vodka", display: "vod‧ka",    answer: "a"     },
+    { word: "shout",     answer: "sh,ou"    },
+    { word: "daughter", display: "daugh‧ter", answer: "au,gh,er"    },
+    { word: "fiction", display: "fic‧tion",  answer: "ic,tion"  },
+    { word: "yellow", display: "ye‧llow",   answer: "ow"    },
+    { word: "swing",     answer: "ing"   },
+    { word: "follow", display: "fo‧llow",   answer: "ow"    },
+    { word: "drool",     answer: "oo"    },
+    { word: "told",      answer: "old"   },
+    { word: "hear",      answer: "ear"   },
+    { word: "cursor", display: "cur‧sor",   answer: "ur,or"    },
+    { word: "mango", display: "man‧go",    answer: "o"     },
+    { word: "lie",       answer: "ie"    },
+    { word: "stray",     answer: "st,ay"    },
+    { word: "window", display: "win‧dow",   answer: "ow"    },
+    { word: "dread",     answer: "ea"    },
+    { word: "oat",       answer: "oa"    },
+    { word: "rainbow", display: "rain‧bow",  answer: "ai,ow"    },
+    { word: "tango",display: "tan‧go", answer: "o"     },
+    { word: "pension", display: "pen‧sion",  answer: "sion"  },
+    { word: "horse",     answer: "or"    },
+    { word: "deaf",      answer: "ea"    }
+  ]
+};
+
+LESSONS[27] = {
+  1: [
+    { word: "cake",    answer: "a_e" },
+    { word: "brush",   answer: "sh"  },
+    { word: "hollow",  display: "ho‧llow",  answer: "ow"   },
+    { word: "midge",   answer: "dge" },
+    { word: "trolley", display: "tro‧lley", answer: "ey"   },
+    { word: "skip",    answer: "sk"  },
+    { word: "blench",  answer: "ch"  },
+    { word: "tout",    answer: "ou"  },
+    { word: "troy",    answer: "oy"  },
+    { word: "snorkel", display: "snor‧kel",  answer: "or,el"  },
+    { word: "chimney", display: "chim‧ney",  answer: "ch,ey"  },
+    { word: "pouch",   answer: "ou,ch"  }
+  ],
+  2: [
+    { word: "central", display: "cent‧ral", answer: "ce,al"    },
+    { word: "phone",   answer: "ph,o_e"        },
+    { word: "swan",    answer: "wa"        },
+    { word: "been",    answer: "ee"        },
+    { word: "fault",   answer: "au"        },
+    { word: "comma",   display: "com‧ma",  answer: "a"     },
+    { word: "bought",  answer: "ought"     },
+    { word: "mammal",  display: "mam‧mal", answer: "al"    },
+    { word: "root",    answer: "oo"        },
+    { word: "thatch",  answer: "th,tch"       },
+    { word: "grudge",  answer: "dge"       },
+    { word: "spurt",   answer: "sp,ur"        }
+  ],
+  3: [
+    { word: "load",    answer: "oa"        },
+    { word: "animal",  display: "a‧ni‧mal",  answer: "al"   },
+    { word: "warn",    answer: "war"       },
+    { word: "sandal",  display: "san‧dal",  answer: "al"   },
+    { word: "fair",    answer: "air"       },
+    { word: "rainbow", display: "rain‧bow", answer: "ai,ow"   },
+    { word: "slaw",    answer: "aw"        },
+    { word: "stealth", answer: "st,ea,th"        },
+    { word: "paul",    answer: "au"        },
+    { word: "grey",    answer: "ey"        },
+    { word: "Bella",   display: "Be‧lla",   answer: "a"   },
+    { word: "tunnel",  display: "tun‧nel",  answer: "el"   },
+    { word: "purple",  display: "pur‧ple",  answer: "ur,le"   },
+    { word: "rick",    answer: "ic"        },
+    { word: "taunt",   answer: "au"        },
+    { word: "eel",     answer: "ee"        },
+    { word: "saucer",  display: "sau‧cer",  answer: "au,cer"   },
+    { word: "flew",    answer: "lew"        },
+    { word: "fudge",   answer: "dge"       },
+    { word: "bubble",  display: "bub‧ble",  answer: "le"   },
+    { word: "swarf",   answer: "war"        },
+    { word: "moth",    answer: "th"        },
+    { word: "lain",    answer: "ai"        },
+    { word: "neap",    answer: "ea"        }
+  ]
+};
+
 
