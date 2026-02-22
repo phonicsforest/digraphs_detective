@@ -124,7 +124,7 @@ LESSONS[3] = {
     { word: "trig",  answer: "ig" },
     { word: "pig",   answer: "ig" },
     { word: "mix",   answer: "ix" },
-    { word: "fig",   answer: "ig" },
+    { word: "jig",   answer: "ig" },
     { word: "hick",  answer: "ic" },
     { word: "jig",   answer: "ig" },
     { word: "leg",   answer: "eg" },
@@ -139,7 +139,7 @@ LESSONS[3] = {
     { word: "kick",  answer: "ic" },
     { word: "big",   answer: "ig" },
     { word: "crick", answer: "ic" },
-    { word: "migs",    answer: "ig" },
+    { word: "fig",    answer: "ig" },
     { word: "keg",   answer: "eg" },
     { word: "trick", answer: "ic" },
   ],
@@ -159,7 +159,7 @@ LESSONS[3] = {
     { word: "egg",    answer: "eg" },
     { word: "flick",  answer: "ic" },
     { word: "varix",  answer: "ix" },
-    { word: "vig",    answer: "ig" },
+    { word: "wig",    answer: "ig" },
     { word: "gigs",   answer: "ig" },
     { word: "traffic",answer: "ic" },
     { word: "teg",    answer: "eg" },
@@ -239,7 +239,7 @@ LESSONS[5] = {
     { word: 'than',  answer: 'th' },
     { word: 'pole',  answer: 'o_e' },
     { word: 'june',  answer: 'ju_e' }, // j + u_e
-    { word: 'flute', answer: 'lu_e' }
+    { word: 'flute', answer: 'lu_e' },
     { word: 'witch', answer: 'tch' },
     { word: 'puke',  answer: 'u_e' },
     { word: 'home',  answer: 'o_e' },
@@ -1086,7 +1086,7 @@ LESSONS[20] = {
     { word: "bile", answer: "i_e" },
     { word: "wright", answer: "wr,ight" },
     { word: "round", answer: "ou" },
-    { word: "fancy", answer: "cy", wordDisplay: "fan‧cy" },
+    { word: "fancy", answer: "cy", display: "fan‧cy" },
     { word: "pace", answer: "ace" },
     { word: "night", answer: "ight" },
     { word: "pride", answer: "i_e" },
@@ -1107,25 +1107,25 @@ LESSONS[20] = {
     { word: "wench", answer: "ch" },
     { word: "high", answer: "igh" },
     { word: "bough", answer: "ough" },
-    { word: "army", answer: "ar,y", wordDisplay: "ar‧my" },
+    { word: "army", answer: "ar,y", display: "ar‧my" },
     { word: "noun", answer: "ou" }
   ],
 
   3: [ // 右上 + 右下 = Level 3
     { word: "hush", answer: "sh" },
     { word: "flight", answer: "ight" },
-    { word: "naughty", answer: "augh,y", wordDisplay: "naugh‧ty" }, // augh = ough family
+    { word: "naughty", answer: "augh,y", display: "naugh‧ty" }, // augh = ough family
     { word: "fight", answer: "ight" },
     { word: "cent", answer: "ce" },
     { word: "thigh", answer: "th,igh" },
-    { word: "sticky", answer: "st,ic,y", wordDisplay: "stic‧ky" },
+    { word: "sticky", answer: "st,ic,y", display: "stic‧ky" },
     { word: "foul", answer: "ou" },
     { word: "forge", answer: "or,ge" },
     { word: "bought", answer: "ought" },
     { word: "budge", answer: "dge" },
     { word: "caught", answer: "au,gh" },
 
-    { word: "woody", answer: "oo,y", wordDisplay: "woo‧dy" },
+    { word: "woody", answer: "oo,y", display: "woo‧dy" },
     { word: "out", answer: "ou" },
     { word: "fright", answer: "ight" },
     { word: "seam", answer: "ea" },
@@ -1160,7 +1160,7 @@ LESSONS[21] = {
     { word: "scrum",    answer: "sc" },
     { word: "hare",     answer: "are" },
     { word: "loam",     answer: "oa" },
-    { word: "forecast", answer: "or", wordDisp: "fore‧cast" },
+    { word: "forecast", answer: "or", display: "fore‧cast" },
     { word: "scope",    answer: "sc,o_e" },
     { word: "share",    answer: "sh,are" },
     { word: "fear",     answer: "ear" },
@@ -1350,7 +1350,7 @@ LESSONS[24] = {
     { word: "took", answer: "ook" },
     { word: "fleecy", display: "flee‧cy",  answer: "ee,cy" },
     { word: "mind",   answer: "ind" },
-    { word: "boart", answer: "oar" },
+    { word: "boar", answer: "oar" },
     { word: "such",   answer: "ch" },
     { word: "purge",   answer: "ur,ge" },
     { word: "bosh",   answer: "sh" },
@@ -1377,17 +1377,17 @@ LESSONS[24] = {
 
 LESSONS[25] = {
   1: [
-    { word: "tide",                     answer: "i_e"  }
-    { word: "bracket",  display: "brac‧ket",  answer: "ket"  }
-    { word: "vow",                     answer: "ow"  }
-    { word: "voyage",   display: "voy‧age",  answer: "oy,age"  }
-    { word: "pearl",                     answer: "ear"  }
-    { word: "break",                     answer: "ea"  }
-    { word: "take",                     answer: "a_e"  }
-    { word: "roam",                     answer: "oa"  }
-    { word: "ticket",   display: "tic‧ket",   answer: "ic,ket"  }
-    { word: "skull",                     answer: "sk"  }
-    { word: "cinder", display: "cin‧der", answer: "ci,er"  }
+    { word: "tide",                     answer: "i_e"  },
+    { word: "bracket",  display: "brac‧ket",  answer: "ket"  },
+    { word: "vow",                     answer: "ow"  },
+    { word: "voyage",   display: "voy‧age",  answer: "oy,age"  },
+    { word: "pearl",                     answer: "ear"  },
+    { word: "break",                     answer: "ea"  },
+    { word: "take",                     answer: "a_e"  },
+    { word: "roam",                     answer: "oa"  },
+    { word: "ticket",   display: "tic‧ket",   answer: "ic,ket"  },
+    { word: "skull",                     answer: "sk"  },
+    { word: "cinder", display: "cin‧der", answer: "ci,er"  },
     { word: "ouch",                     answer: "ou,ch"  }
   ],
 
