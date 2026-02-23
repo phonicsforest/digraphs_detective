@@ -176,7 +176,6 @@ LESSONS[4] = {
     { word: "line",   answer: "i_e" },  
     { word: "smith",  answer: "th" },
     { word: "bumph",  answer: "ph" },
-    { word: "eve",    answer: "e_e" },
     { word: "ash",    answer: "sh" },
     { word: "ape",    answer: "a_e" },  // Ape
     { word: "inch",   answer: "ch" },
@@ -185,20 +184,20 @@ LESSONS[4] = {
     { word: "meme",   answer: "e_e" },  // mEme
     { word: "six",    answer: "ix" },
     { word: "snatch", answer: "tch" },
-    { word: "name",   answer: "a_e" },
-    { word: "ride",   answer: "i_e" },
-
   ],
   2: [
     { word: "shell",  answer: "sh" },
     { word: "peg",    answer: "eg" },
+    { word: "name",   answer: "a_e" },
     { word: "pick",   answer: "ic" },
     { word: "lymph",  answer: "ph" },
     { word: "lunch",  answer: "ch" },
+    { word: "eve",    answer: "e_e" },
     { word: "thrill", answer: "th" },
     { word: "ditch",  answer: "tch" },
     { word: "take",   answer: "a_e" },
     { word: "gig",    answer: "ig" },
+    { word: "ride",   answer: "i_e" },
   ],
   3: [
     { word: "thump",  answer: "th" },
@@ -237,13 +236,9 @@ LESSONS[5] = {
     { word: 'tame',  answer: 'a_e' },
     { word: 'glyph', answer: 'ph' },
     { word: 'than',  answer: 'th' },
-    { word: 'pole',  answer: 'o_e' },
-    { word: 'june',  answer: 'ju_e' }, // j + u_e
-    { word: 'flute', answer: 'lu_e' },
     { word: 'witch', answer: 'tch' },
     { word: 'puke',  answer: 'u_e' },
     { word: 'home',  answer: 'o_e' },
-    { word: 'rule',  answer: 'ru_e' }, // r + u_e
     { word: 'same',  answer: 'a_e' },
     { word: 'eve',   answer: 'e_e' }
   ],
@@ -256,10 +251,14 @@ LESSONS[5] = {
     { word: 'that',  answer: 'th' },
     { word: 'slide', answer: 'i_e' },
     { word: 'cape',  answer: 'a_e' },
+    { word: 'pole',  answer: 'o_e' },
     { word: 'eve',   answer: 'e_e' },
+    { word: 'june',  answer: 'ju_e' }, // j + u_e
     { word: 'mule',  answer: 'u_e' }
   ],
   3: [
+    { word: 'flute', answer: 'lu_e' },
+    { word: 'rule',  answer: 'ru_e' }, // r + u_e
     { word: 'wane',  answer: 'a_e' },
     { word: 'gash',  answer: 'sh' },
     { word: 'dope',  answer: 'o_e' },
@@ -288,51 +287,114 @@ LESSONS[5] = {
 
 LESSONS[6] = {
   1: [
+    { word: "Hone",  answer: "o_e" },  // noPe
+    { word: "stud",  answer: "st" },  // noPe
+    { word: "hope",  answer: "o_e" },  // noPe
+    { word: "grape", answer: "a_e" },  // trIke
+    { word: "gang", answer: "ng" },  // trIke
+    { word: "flume", answer: "lu_e" },  // trIke
+    { word: "stamp", answer: "st" },  // trIke
+    { word: "mime", answer: "i_e" },  // trIke
+    { word: "swing", answer: "ing" },  // trIke
+    { word: "ink", answer: "ink" },  // trIke
+    { word: "knack", answer: "kn" },  // trIke
+    { word: "ruse", answer: "ru_e" },  // trIke
 
   ],
   2: [
-    { word: "joke",  answer: "o_e" },  // joKe
-    { word: "king",  answer: "ing" },  // kING
-    { word: "lake",  answer: "a_e" },  // laKe
-    { word: "lope",  answer: "o_e" },  // loPe
-    { word: "flute", answer: "lu_e" },  // fluTe
-    { word: "hive",  answer: "i_e" },  // hIve
-    { word: "knot",  answer: "kn"  },  // KNot
-    { word: "stock", answer: "st"  },  // STock
+    { word: "vote",  answer: "o_e" },  // loPe
+    { word: "mope",  answer: "o_e" },  // loPe
+    { word: "wing",  answer: "ing" },  // loPe
+    { word: "stub",  answer: "st" },  // loPe
+    { word: "five",  answer: "i_e" },  // loPe
+    { word: "cute",  answer: "u_e" },  // loPe
+    { word: "drink",  answer: "ink" },  // loPe
+    { word: "tape",  answer: "a_e" },  // loPe
+    { word: "stab",  answer: "st" },  // loPe
+    { word: "knell",  answer: "kn" },  // loPe
+    { word: "long",  answer: "ng" },  // loPe
+    { word: "nude",  answer: "u_e" },  // loPe
+
   ],
   3: [
-    { word: "nope",  answer: "o_e" },  // noPe
+   { word: "jute", answer: "ju_e" }, 
+    { word: "joke",  answer: "o_e" },  // joKe
+    { word: "king",  answer: "ing" },  // kING
+{ word: "knock",  answer: "kn" },  // kING
+    { word: "lake",  answer: "a_e" },  // laKe
+    { word: "lope",  answer: "o_e" },  // loPe
+    { word: "bang",  answer: "ng" },  // loPe
+    
+{ word: "flute", answer: "lu_e" },  // fluTe
+    { word: "hive",  answer: "i_e" },  // hIve
+    { word: "knot",  answer: "kn"  },  // KNot
+    { word: "ring",  answer: "ing"  },  // KNot
+    { word: "stock", answer: "st"},
+
+ { word: "nope",  answer: "o_e" },  // noPe
     { word: "trike", answer: "i_e" },  // trIke
     { word: "pink",  answer: "ink" },  // pINK
     { word: "lute",  answer: "lu_e" },  // luTe
     { word: "sale",  answer: "a_e" },  // saLe
     { word: "knap",  answer: "kn"  },  // KNap
+    { word: "speck",  answer: "sp" },  // coVe
     { word: "cove",  answer: "o_e" },  // coVe
     { word: "cling", answer: "ing" },  // clING（照你講用長啲嗰個）
     { word: "gong",  answer: "ng"  },  // goNG
+    { word: "skate",  answer: "sk,a_e"  },  // goNG
     { word: "fluke", answer: "lu_e" },  // fluKe
+   
   ],
 };
 
 LESSONS[7] = {
   1: [
-
-
+    { word: "drupe", answer: "ru_e" },
+    { word: "flute", answer: "lu_e" },
+    { word: "guest", answer: "gu" },
+    { word: "slink", answer: "ink" },
+    { word: "clinch", answer: "ch" },
+    { word: "tube", answer: "u_e" },
+    { word: "quill", answer: "qu" },
+    { word: "quest", answer: "qu" },
+    { word: "bong", answer: "ng" },
+    { word: "bute", answer: "u_e" },     // l + u_e
+    { word: "rule", answer: "ru_e" },     // l + u_e
+    { word: "smash", answer: "sh" },     // l + u_e
   ],
   2: [
     { word: "wink", answer: "ink" },
     { word: "dive", answer: "i_e" },
+    { word: "guilt", answer: "gu" },
+    { word: "quench", answer: "qu,ch" },
     { word: "rude", answer: "ru_e" },
     { word: "jinks", answer: "ink" },
     { word: "fume", answer: "u_e" },
     { word: "quack", answer: "qu" },
     { word: "tong", answer: "ng" },
-    { word: "cute", answer: "u_e" },
-    { word: "long", answer: "ng" },
+    { word: "cute", answer: "u_e" },     // l + u_e
     { word: "flume", answer: "lu_e" },     // l + u_e
   ],
   3: [
+    { word: "rule", answer: "ru_e" },
+    { word: "fig", answer: "ig" },
+    { word: "wrack", answer: "wr" },
+    { word: "whelp", answer: "wh" },
+    { word: "june", answer: "ju_e" },
+    { word: "guide", answer: "gu,i_e" },
+    { word: "stink", answer: "st,ink" },
+    { word: "wing", answer: "ing" },
+    { word: "throng", answer: "th,ng" },
+    { word: "knit", answer: "kn" },
+    { word: "sink", answer: "ink" },
+    { word: "make", answer: "a_e" },
+    { word: "writ", answer: "wr" },
     { word: "brute", answer: "ru_e" },
+    { word: "think", answer: "th,ink" },
+    { word: "whack", answer: "wh" },
+    { word: "white", answer: "wh,i_e" },
+
+    { word: "wreck", answer: "wr" },
     { word: "fuse",  answer: "u_e" },
     { word: "ring",  answer: "ing" },      // 用 ing（唔用 ng）
     { word: "knob",  answer: "kn" },
@@ -356,11 +418,6 @@ LESSONS[8] = {
     { word: "whine",  answer: "wh,i_e" },   // wh + i_e
     { word: "steep",  answer: "st,ee" },
     { word: "knee",   answer: "kn,ee" },    // kn + ee
-    { word: "queen",  answer: "qu,ee" },
-    { word: "wreath", answer: "wr,ea,th" }, // wr + ea + th
-    { word: "breath", answer: "ea,th" },
-    { word: "wring",  answer: "wr,ing" },
-    { word: "flue",   answer: "ue" },
 
   ],
 
@@ -375,9 +432,14 @@ LESSONS[8] = {
     { word: "knit",   answer: "kn" },
     { word: "swing",  answer: "ing" },
     { word: "quiz",   answer: "qu" },
-    { word: "hie",    answer: "ie" }
+    { word: "hie",    answer: "ie" },
+    { word: "queen",  answer: "qu,ee" },
   ],
   3: [
+    { word: "wreath", answer: "wr,ea,th" }, // wr + ea + th
+    { word: "breath", answer: "ea,th" },
+    { word: "wring",  answer: "wr,ing" },
+    { word: "flue",   answer: "ue" },
     { word: "long",   answer: "ng" },
     { word: "weak",   answer: "ea" },
     { word: "true",   answer: "ue" },
@@ -397,50 +459,36 @@ LESSONS[8] = {
 
 LESSONS[9] = {
   1: [
-    { word: "tern",   answer: "er" },    // 新: er
-    { word: "church",   answer: "ur,ch" },    // 新: ur
-    { word: "sir",    answer: "ir" },    // 新: ir
-    { word: "girl",   answer: "ir" },    // 新: ir
-    { word: "slur",   answer: "ur" },    // 新: ur
-    { word: "nerve",  answer: "er" },    // 新: er
-    { word: "thorn",  answer: "th,or" },
-    { word: "storm",  answer: "st,or" },
-    { word: "sharp",  answer: "sh,ar" },
-    { word: "farm",  answer: "ar" },
-
-
     { word: "wrench", answer: "wr,ch" },    // 舊: wr
     { word: "splat",  answer: "sp" },    // 用 sp
     { word: "deal",   answer: "ea" },
     { word: "pee",    answer: "ee" },
     { word: "chief",  answer: "ch,ie" },
+    { word: "tern",   answer: "er" },    // 新: er
+{ word: "blur",   answer: "ur" },    // 新: er
     { word: "queen",  answer: "qu,ee" },
+    { word: "sir",    answer: "ir" },    // 新: ir
     { word: "flea",   answer: "ea" },
     { word: "whine",  answer: "wh,i_e" },// wh + i_e
-    { word: "wrung",  answer: "wr,ng" },    // wr（亦有 ng）
-    { word: "chick",  answer: "ch,ic" }, // ch + ic
-    { word: "steal",  answer: "st,ea" },
-    { word: "speech", answer: "sp,ee,ch" },
-    { word: "whale",  answer: "wh,a_e" },// wh + a_e
-    { word: "thief",  answer: "th,ie" },
-    { word: "wrong",  answer: "wr,ng" },
-    { word: "wheel",  answer: "wh,ee" }, // wh + ee
-    { word: "white",  answer: "wh,i_e" },
-    { word: "spine",  answer: "sp,i_e" },
-
+    { word: "kerb",  answer: "er" },// wh + i_e
   ],
   2: [
+    { word: "slur",   answer: "ur" },    // 新: ur
+    { word: "wrung",  answer: "wr,ng" },    // wr（亦有 ng）
     { word: "cream",  answer: "ea" },
     { word: "dream",  answer: "ea" },
     { word: "fee",    answer: "ee" },
     { word: "lief",   answer: "ie" },
     { word: "dig",    answer: "ig" },
+    { word: "girl",   answer: "ir" },    // 新: ir
+    { word: "nerve",  answer: "er" },    // 新: er
     { word: "gee",    answer: "ee" },
     { word: "code",   answer: "o_e" },
     { word: "jerk",   answer: "er" }     // 新: er
   ],
   3: [
     { word: "feat",   answer: "ea" },
+    { word: "chick",  answer: "ch,ic" }, // ch + ic
     { word: "burst",  answer: "ur" },    // 新: ur
     { word: "wry",    answer: "wr" },
     { word: "brief",  answer: "ie" },
@@ -450,11 +498,24 @@ LESSONS[9] = {
     { word: "dirt",   answer: "ir" },    // 新: ir
     { word: "her",    answer: "er" },    // 新: er
     { word: "bead",   answer: "ea" },
+    { word: "thief",  answer: "th,ie" },
     { word: "fur",    answer: "ur" },    // 新: ur
+    { word: "wrong",  answer: "wr,ng" },
+    { word: "wheel",  answer: "wh,ee" }, // wh + ee
     { word: "first",  answer: "ir" },    // 新: ir
     { word: "fern",   answer: "er" },    // 新: er
+    { word: "white",  answer: "wh,i_e" },
     { word: "spit",   answer: "sp" },
-    { word: "leave",  answer: "ea" }
+    { word: "spine",  answer: "sp,i_e" },
+    { word: "leave",  answer: "ea" },
+    { word: "church",   answer: "ur,ch" },    // 新: ur
+    { word: "thorn",  answer: "th,or" },
+    { word: "storm",  answer: "st,or" },
+    { word: "sharp",  answer: "sh,ar" },
+    { word: "farm",  answer: "ar" },
+    { word: "steal",  answer: "st,ea" },
+    { word: "speech", answer: "sp,ee,ch" },
+    { word: "whale",  answer: "wh,a_e" },// wh + a_e
   ]
 };
 
