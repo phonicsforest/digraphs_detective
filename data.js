@@ -374,11 +374,11 @@ LESSONS[7] = {
     { word: "tong", answer: "ng" },
     { word: "cute", answer: "u_e" },     // l + u_e
     { word: "flume", answer: "lu_e" },     // l + u_e
+   { word: "fig", answer: "ig" },
   ],
   3: [
     { word: "rule", answer: "ru_e" },
-    { word: "fig", answer: "ig" },
-    { word: "wrack", answer: "wr" },
+   { word: "wrack", answer: "wr" },
     { word: "whelp", answer: "wh" },
     { word: "june", answer: "ju_e" },
     { word: "guide", answer: "gu,i_e" },
