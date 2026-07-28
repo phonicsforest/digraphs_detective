@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digraph Detective</title>
+  <style>
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --accent: #b91c1c;
+  --ok: #16a34a;
+  --bad: #ef4444;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  overflow: hidden;
+}
+
+.page { min-height: 100vh; display: block; padding: 0; }
+.app  { width: 100%; }
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 24px 24px 16px;
+}
+
+h1 {
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin: 0 0 14px;
+  letter-spacing: .2px;
+  text-align: center;
+  font-weight: 500;
+  color: #8b1a1a;
+}
+
+#topBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+select, button {
+  height: 30px;
+  padding: 0 14px;
+  font-size: 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}
+button { cursor: pointer; }
+
+#enterBtn,
+#showAnswersBtn,
+#nextLevelBtn {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 400;
+}
+
+/* disabled 樣式 */
+#showAnswersBtn:disabled,
+#nextLevelBtn:disabled {
+  background: #f5b5b5 !important;
+  color: #ffffffaa !important;
+  cursor: default;
+}
+
+.grid-wrap {
+  height: calc(100vh - 340px);
+  display: flex;
+  justify-content: center;
+}
+@media (max-height: 700px) {
+  .grid-wrap { height: calc(100vh - 200px); }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.tile {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #fff;
+}
+
+.word {
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  display: inline-flex;
+  gap: .06em;
+  user-select: none;
+  line-height: 1;
+  font-size: clamp(24px, 3.3vw, 60px);
+}
+.word .ch {
+  padding: 0 .04em;
+  border-radius: 6px;
+  transition: color .15s ease;
+  color: #111;
+  cursor: pointer;
+}
+.word .ch.selected { color: var(--accent); }
+
+.mark {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 900;
+  line-height: 1;
+  display: none;
+  font-size: clamp(18px, 2.2vw, 44px);
+}
+.tile.correct   .mark.tick   { display: block; color: var(--ok); }
+.tile.incorrect .mark.cross  { display: block; color: var(--bad); }
+.tile.revealed  .mark.circle { display: block; color: var(--bad); }
+
+.controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.feedback {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* 分音節虛線（用來顯示書入面嗰條線） */
+.syllable-split {
+  display: inline-block;
+  width: 0;
+  border-left: 2px dotted #9ca3af;
+ margin-left: -0.01em;
+  margin-right: -0.11em;  height: 0.9em;           /* ← 線更短，不會太突出 */
+  vertical-align: 0.05em;  /* ← 微微向下，貼近字母中心 */
+}
+
+.hidden { display: none !important; }
+
+/* Finish screen */
+.finish-screen { text-align: center; padding: 40px 0; }
+.finish-title  { font-size: 40px; margin-bottom: 10px; font-weight: 700; }
+.finish-lesson { font-size: 18px; color: #444; margin-bottom: 20px; }
+.finish-list   { font-size: 26px; font-weight: 700; margin-bottom: 30px; color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="app card">
+      <h1>Digraph Detective</h1>
+
+      <div class="row" id="topBar">
+        <div>
+          <select id="lessonSel"></select>
+        </div>
+        <div style="align-self:flex-end">
+          <button id="startBtn">Start</button>
+        </div>
+      </div>
+
+      <div id="gameArea" class="hidden">
+        <div class="grid-wrap">
+          <div id="grid" class="grid" aria-live="polite"></div>
+        </div>
+
+        <div class="controls">
+          <button id="enterBtn">Submit</button>
+          <button id="showAnswersBtn" disabled>Show Answers</button>
+          <!-- ★ 不再加 hidden class，永遠都見到，只係 disabled / enabled -->
+          <button id="nextLevelBtn" disabled>Next</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </div>
+
+      <div id="reportArea" class="hidden finish-screen">
+        <h2 class="finish-title">Finish</h2>
+        <div id="finishLesson" class="finish-lesson"></div>
+        <div id="finishList" class="finish-list"></div>
+
+        <div class="controls">
+          <button id="againBtn">Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- data.js 內有 LESSONS -->
+<script src="data.js"></script>
+
+<script>
+  // ====== Elements ======
+  const lessonSel      = document.getElementById('lessonSel');
+  const startBtn       = document.getElementById('startBtn');
+  const topBar         = document.getElementById('topBar');
+  const gameArea       = document.getElementById('gameArea');
+  const gridEl         = document.getElementById('grid');
+  const enterBtn       = document.getElementById('enterBtn');
+  const showAnswersBtn = document.getElementById('showAnswersBtn');
+  const nextLevelBtn   = document.getElementById('nextLevelBtn');
+  const feedback       = document.getElementById('feedback');
+  const reportArea     = document.getElementById('reportArea');
+  const againBtn       = document.getElementById('againBtn');
+  const finishLesson   = document.getElementById('finishLesson');
+  const finishList     = document.getElementById('finishList');
+
+  // ====== State ======
+  let currentLesson = 1;
+
+  let round = {
+    list: [],
+    attempts: [],
+    selections: {},
+    locked: new Set(),
+    usedShowAnswer: {},
+    lesson: 1,
+    level: 1,
+    mode: 'main',          // 'main' (1,2) or 'review' (3)
+    involvedAnswers: null,
+    archived: false,
+  };
+
+  // e.g. { 'sh','ch','st-end' }
+  let mistakeAnswerTypes   = new Set();
+  // 要重溫嘅類型（同上 key 一樣）
+  let pendingAnswerTypes   = new Set();
+  // Level 3 避免重覆用同一個字
+  let reviewUsedWordsByAnswer = {}; // { key: Set(words) }
+
+  const FINAL_DIGRAPHS = ['st', 'sk', 'sc', 'sp'];
+
+  // ====== Helpers ======
+  function show(el, yes) { el.classList.toggle('hidden', !yes); }
+  function setFeedback(msg) { feedback.textContent = msg || ''; }
+
+function renderWordTo(container, item, gidx) {
+  container.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'word';
+  wrap.dataset.gidx = String(gidx);
+
+  const word    = item.word;                    // 真正用來 marking / answer 嘅字
+  const display = item.display || item.word;    // 用來顯示（可能有 ‧）
+
+  let letterIndex = 0; // 對應 word 裏面嘅 index（0,1,2,...）
+
+  for (let i = 0; i < display.length; i++) {
+    const ch = display[i];
+
+    // 如果係分音節符號（你而家用 U+2027 "‧"）
+    if (ch === '‧' || ch === '|' || ch === '-') {
+      const bar = document.createElement('span');
+      bar.className = 'syllable-split';
+      wrap.appendChild(bar);
+      continue;
+    }
+
+    // 平時正常字母：建立一個 .ch，可以被 click / 選中
+    const sp = document.createElement('span');
+    sp.className = 'ch';
+    sp.dataset.lidx = String(letterIndex);
+    sp.textContent = ch;
+
+    // 如果之前已經揀過呢個位，要加返 selected class
+    if (round.selections[gidx]?.has(letterIndex)) {
+      sp.classList.add('selected');
+    }
+
+    wrap.appendChild(sp);
+    letterIndex++;
+  }
+
+  container.appendChild(wrap);
+}
+
+  function renderGrid() {
+    gridEl.innerHTML = '';
+    round.list.forEach((item, gidx) => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.dataset.gidx = String(gidx);
+
+      const inner = document.createElement('div');
+renderWordTo(inner, item, gidx);
+      tile.appendChild(inner);
+
+      const tick = document.createElement('div');
+      tick.className = 'mark tick';
+      tick.textContent = '✓';
+      tile.appendChild(tick);
+
+      const cross = document.createElement('div');
+      cross.className = 'mark cross';
+      cross.textContent = '✗';
+      tile.appendChild(cross);
+
+      const circle = document.createElement('div');
+      circle.className = 'mark circle';
+      circle.textContent = '◯';
+      tile.appendChild(circle);
+
+      gridEl.appendChild(tile);
+    });
+  }
+
+  // Lesson 2 特別邏輯：決定錯誤類型 key
+  // 例如：
+  //  - 一般 ch → "ch"
+  //  - Lesson 2: fast (answer="")、字尾 st → "st-end"
+// 只比「正常有 answer」嘅字用；尾位字交畀 submit / showAnswers 處理
+function getMistakeKeyForItem(lesson, item) {
+  const ans = (item.answer || "").toLowerCase();
+  if (!ans) return "";        // fast / vast 呢啲直接唔記錄，由 tail 邏輯處理
+  return ans;                 // sh / ch / ph / th / tch / st / sk / sc / sp
+}
+
+// 將 item.answer 變成一個 array：
+// "st,ic"  -> ["st","ic"]
+// "ch"    -> ["ch"]
+// "" / undefined -> []
+function getAnswerParts(item) {
+  if (!item || item.answer == null) return [];
+  if (Array.isArray(item.answer)) {
+    return item.answer.map(s => String(s).toLowerCase()).filter(Boolean);
+  }
+  return String(item.answer)
+    .toLowerCase()
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+  // 判斷選擇是否完全正確
+function isSelectionExactlyAnswer(gidx, item) {
+  const set   = round.selections[gidx];
+  const word  = item.word.toLowerCase();
+  const parts = getAnswerParts(item)
+    .map(p => (p || "").toLowerCase())
+    .filter(Boolean);
+
+  if (parts.length === 0) {
+    return !set || set.size === 0;
+  }
+
+  if (!set || set.size === 0) return false;
+
+  const required = new Set();
+
+  parts.forEach(ans => {
+
+    // ========== SPECIAL: ju_e / ru_e / lu_e ==========
+    if (/^[jrl]u_e$/.test(ans)) {
+      const first = ans[0];             // j / r / l
+      const uPos  = word.indexOf("u");
+      const lastE = word.lastIndexOf("e");
+      if (uPos === -1 || lastE === -1) return;
+
+      const firstPos = word.indexOf(first);
+      if (firstPos !== -1 && firstPos === uPos - 1) {
+        required.add(firstPos);
+        required.add(uPos);
+        required.add(lastE);
+      }
+      return;
+    }
+
+    // ========== silent-e: a_e / e_e / i_e / o_e / u_e ==========
+    if (/^[aeiou]_e$/.test(ans)) {
+      const vowel = ans[0];
+      const lastE = word.lastIndexOf("e");
+      if (lastE === -1) return;
+      const vIdx = word.lastIndexOf(vowel, lastE - 1);
+      if (vIdx === -1) return;
+
+      required.add(vIdx);
+      required.add(lastE);
+      return;
+    }
+
+    // ========== normal digraphs / blends ==========
+    let startIdx = 0;
+    while (true) {
+      const idx = word.indexOf(ans, startIdx);
+      if (idx === -1) break;
+      for (let i = idx; i < idx + ans.length; i++) {
+        required.add(i);
+      }
+      startIdx = idx + ans.length;
+    }
+  });
+
+  if (required.size === 0) return false;
+
+  if (set.size !== required.size) return false;
+  for (const i of set) {
+    if (!required.has(i)) return false;
+  }
+  return true;
+}
+
+  // Show Answers 規則：
+  //   - 少於 6 個鎖定 → disabled
+  //   - 全部鎖定       → disabled
+function updateShowAnswerButton() {
+  const correctCount = round.locked.size;
+
+  // ① 如果全部鎖定咗（全部啱／已 reveal），無需要再 Show Answers
+  if (correctCount === round.list.length) {
+    showAnswersBtn.disabled = true;
+    return;
+  }
+
+  // ② Level 3（review）：只要 Submit 過一次就可以按 Show Answers
+  if (round.mode === 'review') {
+    // round.attempts 係一個 array，每次 submitAll 我哋都有 ++
+    const totalAttempts = round.attempts.reduce((sum, x) => sum + (x || 0), 0);
+    // 未 submit 過（totalAttempts === 0）先 disable
+    showAnswersBtn.disabled = (totalAttempts === 0);
+    return;
+  }
+
+  // ③ Level 1 / 2：保留原本規則 —— 至少 6 個鎖定先可以 Show Answers
+  showAnswersBtn.disabled = (correctCount < 6);
+}
+
+  // Next / Finish button 狀態
+function updateNextButtonForState() {
+  // 預設：Next 出現，但 disable，字寫 Next
+  nextLevelBtn.disabled = true;
+  nextLevelBtn.textContent = 'Next';
+
+  // --- Level 1：全部鎖定 → 可以 Next 去 Level 2 ---
+  if (round.mode === 'main' &&
+      round.level === 1 &&
+      round.locked.size === round.list.length) {
+    nextLevelBtn.disabled = false;
+    nextLevelBtn.textContent = 'Next';
+    return;
+  }
+
+  // --- Level 2：全部鎖定 ---
+  if (round.mode === 'main' &&
+      round.level === 2 &&
+      round.locked.size === round.list.length) {
+
+    nextLevelBtn.disabled = false;
+    nextLevelBtn.textContent = (pendingAnswerTypes.size === 0)
+      ? 'Finish'   // 冇嘢要重溫 → 直接去 Finish 頁
+      : 'Next';    // 仲有嘢要重溫 → 去 Level 3
+    return;
+  }
+
+  // --- Level 3（review）：全部鎖定 ---
+  if (round.mode === 'review' &&
+      round.locked.size === round.list.length) {
+
+    nextLevelBtn.disabled = false;
+    nextLevelBtn.textContent = (pendingAnswerTypes.size === 0)
+      ? 'Finish'
+      : 'Next';    // 仲有弱項 → 再下一 round review
+  }
+}
+
+  function loadLevel(lessonNo, levelNo) {
+    const list = LESSONS[lessonNo]?.[levelNo];
+    if (!Array.isArray(list) || list.length !== 12) {
+      alert(`Lesson ${lessonNo} 的 Level ${levelNo} 尚未加入（需要 12 個字）。`);
+      return false;
+    }
+
+    currentLesson = lessonNo;
+
+    round = {
+      list: JSON.parse(JSON.stringify(list)),
+      attempts: Array(list.length).fill(0),
+      selections: {},
+      locked: new Set(),
+      usedShowAnswer: {},
+      lesson: lessonNo,
+      level: levelNo,
+      mode: 'main',
+      involvedAnswers: null,
+      archived: false,
+    };
+
+    show(reportArea, false);
+    show(gameArea, true);
+    show(topBar, true);
+    renderGrid();
+    setFeedback('');
+    showAnswersBtn.disabled = true;
+    nextLevelBtn.disabled   = true;
+nextLevelBtn.textContent = 'Next';
+    return true;
+  }
+// 尾位字（fast / vast / clasp / rasp ...）一出錯 / 用 Show Answers，就叫呢個
+function recordTailMistake(baseDigraph) {
+  // Finish 畫面只想顯示 "st" / "sp" ...
+  mistakeAnswerTypes.add(baseDigraph.toLowerCase());
+  // Level 3 用 key = "st-end" / "sp-end" ...
+  pendingAnswerTypes.add((baseDigraph.toLowerCase()) + "-end");
+}
+
+  // ====== 將 level 成績記錄成「錯誤類型」 ======
+// ====== 將 level 成績記錄成「錯誤類型」 ======
+function archiveCurrentLevelResults() {
+  if (round.mode !== 'main' || round.archived) return;
+
+  round.list.forEach((item, gidx) => {
+    const attempts = round.attempts[gidx] || 0;
+    const usedAns  = !!round.usedShowAnswer[gidx];
+
+    // 拆開成多個 answer part，例如 "st,ic" → ["st","ic"]
+    const parts = getAnswerParts(item)
+      .map(p => (p || "").toLowerCase())
+      .filter(p => p);
+
+    // 冇明確 answer（fast / vast / clasp / rasp ...）
+    // 尾位 st/sp/sk/sc 已經由 recordTailMistake() 處理，所以唔再做嘢
+    if (!parts.length) return;
+
+    // 「完美」定義：只試一次，而且冇用 Show Answers
+    const perfect = (attempts === 1 && !usedAns);
+
+    if (!perfect) {
+      // 呢個字涉及嘅每一個答案都當係弱項
+      parts.forEach(part => {
+        mistakeAnswerTypes.add(part);   // Finish 頁顯示用
+        pendingAnswerTypes.add(part);   // Level 3 出題用
+      });
+    }
+  });
+
+  round.archived = true;
+}
+
+function finishWithMistakeReport() {
+  show(gameArea, false);
+  show(reportArea, true);
+  show(topBar, false);
+
+const displayNo = getDisplayLessonNumber(currentLesson);
+finishLesson.textContent = `Lesson ${displayNo}`;
+
+  const wrongAnswers = Array.from(mistakeAnswerTypes);
+  if (!wrongAnswers.length) {
+    finishList.textContent = "Perfect!";
+  } else {
+    finishList.innerHTML = wrongAnswers
+      .map(a => `<div>${a}</div>`)
+      .join("");
+  }
+}
+
+function getDisplayLessonNumber(internalLesson) {
+  if (internalLesson === 1) {
+    return 7;
+  }
+  return internalLesson + 7;
+}
+
+// 正常 digraph 用：key = "sh" / "st" / "sp" ...
+function pickReviewWordsForAnswer(lesson, key, count) {
+  const lowerKey = (key || '').toLowerCase();
+  if (!lowerKey) return [];
+
+  if (!reviewUsedWordsByAnswer[lowerKey]) {
+    reviewUsedWordsByAnswer[lowerKey] = new Set();
+  }
+  const usedSet = reviewUsedWordsByAnswer[lowerKey];
+
+  const pools = [];
+  if (LESSONS[lesson]?.[3]) pools.push(LESSONS[lesson][3]);
+  if (LESSONS[lesson]?.[1]) pools.push(LESSONS[lesson][1]);
+  if (LESSONS[lesson]?.[2]) pools.push(LESSONS[lesson][2]);
+
+  const results = [];
+
+  for (const pool of pools) {
+    for (const item of pool) {
+      const ans = (item.answer || "").toLowerCase();
+      if (ans !== lowerKey) continue;
+      if (usedSet.has(item.word)) continue;
+
+      results.push({ word: item.word, answer: item.answer });
+      usedSet.add(item.word);
+      if (results.length >= count) return results;
+    }
+  }
+
+  // 唔夠就容許重複
+  if (results.length < count) {
+    for (const pool of pools) {
+      for (const item of pool) {
+        const ans = (item.answer || "").toLowerCase();
+        if (ans !== lowerKey) continue;
+
+        results.push({ word: item.word, answer: item.answer });
+        if (results.length >= count) return results;
+      }
+    }
+  }
+
+  return results;
+}
+
+// 尾位 st / sp / sk / sc 用：key base = "st" / "sp" ...
+function pickTailReviewWordsForAnswer(lesson, baseDigraph, count) {
+  const lowerAns = (baseDigraph || "").toLowerCase();
+  if (!lowerAns) return [];
+
+  const key = lowerAns + "-end";
+  if (!reviewUsedWordsByAnswer[key]) {
+    reviewUsedWordsByAnswer[key] = new Set();
+  }
+  const usedSet = reviewUsedWordsByAnswer[key];
+
+  const pools = [];
+  if (LESSONS[lesson]?.[3]) pools.push(LESSONS[lesson][3]);
+  if (LESSONS[lesson]?.[1]) pools.push(LESSONS[lesson][1]);
+  if (LESSONS[lesson]?.[2]) pools.push(LESSONS[lesson][2]);
+
+  const results = [];
+
+  for (const pool of pools) {
+    for (const item of pool) {
+      const w = item.word.toLowerCase();
+      if (item.answer) continue;            // 只要 answer == ""
+      if (!w.endsWith(lowerAns)) continue; // 尾位係 st / sp / sk / sc
+      if (usedSet.has(item.word)) continue;
+
+      results.push({ word: item.word, answer: item.answer });
+      usedSet.add(item.word);
+      if (results.length >= count) return results;
+    }
+  }
+
+  if (results.length < count) {
+    for (const pool of pools) {
+      for (const item of pool) {
+        const w = item.word.toLowerCase();
+        if (item.answer) continue;
+        if (!w.endsWith(lowerAns)) continue;
+
+        results.push({ word: item.word, answer: item.answer });
+        if (results.length >= count) return results;
+      }
+    }
+  }
+
+  return results;
+}
+
+function startReviewRound() {
+  if (!pendingAnswerTypes.size) {
+    finishWithMistakeReport();
+    return;
+  }
+
+  const lesson = currentLesson;
+  const selectedTypes = Array.from(pendingAnswerTypes);
+
+  const newList = [];
+  const involvedAnswers = new Set();
+  const chosenWords = new Set();   // ⭐ 用嚟記住今個 round 已經揀過嘅字
+
+  selectedTypes.forEach(type => {
+    let words = [];
+
+    if (type.endsWith("-end")) {
+      // 尾位 st / sp / sk / sc 例如 "st-end"
+      const base = type.slice(0, -4); // "st-end" → "st"
+      words = pickTailReviewWordsForAnswer(lesson, base, 2);
+    } else {
+      // 正常 digraph 例如 "st"、"ic"、"ch"
+      words = pickReviewWordsForAnswer(lesson, type, 2);
+    }
+
+    // 🔸 過濾已經揀過嘅字，避免一隻字出多過一次
+    const fresh = [];
+    words.forEach(w => {
+      if (!chosenWords.has(w.word)) {
+        chosenWords.add(w.word);  // 記低呢隻字已經用咗
+        fresh.push(w);
+      }
+    });
+
+    if (fresh.length > 0) {
+      involvedAnswers.add(type.toLowerCase());
+      newList.push(...fresh);
+    }
+  });
+
+  // 如果最後一隻新字都冇，就直接去 Finish
+  if (!newList.length) {
+    pendingAnswerTypes.clear();
+    finishWithMistakeReport();
+    return;
+  }
+
+  round = {
+    list: newList,
+    attempts: Array(newList.length).fill(0),
+    selections: {},
+    locked: new Set(),
+    usedShowAnswer: {},
+    lesson,
+    level: 3,
+    mode: 'review',
+    involvedAnswers,
+    archived: true,
+  };
+
+show(reportArea, false);
+show(gameArea, true);
+show(topBar, true);
+renderGrid();
+setFeedback('練習曾經錯過的發音組合。');
+
+showAnswersBtn.disabled = true;
+nextLevelBtn.disabled = true;       // 入 Level 3 時先唔俾按
+nextLevelBtn.textContent = 'Next';  // 文字照樣係 Next
+}
+
+  // ====== 顯示答案 ======
+// ====== 顯示答案 ======
+function showAnswers() {
+  round.list.forEach((item, gidx) => {
+    if (round.locked.has(gidx)) return;
+
+    const tile = gridEl.querySelector(`.tile[data-gidx="${gidx}"]`);
+    if (!tile) return;
+
+    const word  = item.word.toLowerCase();
+    const parts = getAnswerParts(item)
+      .map(p => (p || "").toLowerCase())
+      .filter(Boolean);
+
+    // ===== CASE A: no answer =====
+    if (parts.length === 0) {
+      if (round.lesson === 2 && word.length >= 2) {
+        const tail = word.slice(word.length - 2);
+        if (["st","sp","sk","sc"].includes(tail)) {
+          recordTailMistake(tail);
+        }
+      }
+
+      round.selections[gidx]     = new Set();
+      round.usedShowAnswer[gidx] = true;
+      round.locked.add(gidx);
+
+      tile.classList.remove("incorrect","correct");
+      tile.classList.add("revealed");
+      tile.querySelectorAll(".ch").forEach(ch => ch.classList.remove("selected"));
+
+      tile.querySelector(".mark.tick").style.display   = "none";
+      tile.querySelector(".mark.cross").style.display  = "none";
+      tile.querySelector(".mark.circle").style.display = "block";
+      return;
+    }
+
+    // ===== CASE B: 有答案 =====
+    const sel = new Set();
+
+    parts.forEach(ans => {
+
+      // ========== SPECIAL ju_e / ru_e / lu_e ==========
+      if (/^[jrl]u_e$/.test(ans)) {
+        const first = ans[0];
+        const uPos  = word.indexOf("u");
+        const lastE = word.lastIndexOf("e");
+        const firstPos = word.indexOf(first);
+
+        if (uPos !== -1 && lastE !== -1 && firstPos === uPos - 1) {
+          sel.add(firstPos);
+          sel.add(uPos);
+          sel.add(lastE);
+        }
+        return;
+      }
+
+      // ========== silent-e vowel ==========
+      if (/^[aeiou]_e$/.test(ans)) {
+        const vowel = ans[0];
+        const lastE = word.lastIndexOf("e");
+        if (lastE !== -1) {
+          const vIdx = word.lastIndexOf(vowel, lastE - 1);
+          if (vIdx !== -1) {
+            sel.add(vIdx);
+            sel.add(lastE);
+          }
+        }
+        return;
+      }
+
+      // ========== normal digraph / blend ==========
+      let startIdx = 0;
+      while (true) {
+        const idx = word.indexOf(ans, startIdx);
+        if (idx === -1) break;
+        for (let i = idx; i < idx + ans.length; i++) {
+          sel.add(i);
+        }
+        startIdx = idx + ans.length;
+      }
+    });
+
+    if (sel.size === 0) return;
+
+    round.selections[gidx]     = sel;
+    round.usedShowAnswer[gidx] = true;
+    round.locked.add(gidx);
+
+    tile.classList.remove("incorrect","correct");
+    tile.classList.add("revealed");
+
+    tile.querySelectorAll(".ch").forEach((el, idx) => {
+      if (sel.has(idx)) el.classList.add("selected");
+      else el.classList.remove("selected");
+    });
+
+    tile.querySelector(".mark.tick").style.display   = "none";
+    tile.querySelector(".mark.cross").style.display  = "none";
+    tile.querySelector(".mark.circle").style.display = "block";
+  });
+
+  setFeedback("已顯示答案。");
+  updateShowAnswerButton();
+  updateNextButtonForState();
+}
+
+  // Review 結束後：判斷仲有冇弱項
+function handleReviewRoundEnd() {
+  const stillWeak = new Set();
+
+  round.involvedAnswers.forEach(ansType => {
+    let allPerfect = true;
+
+    if (ansType.endsWith("-end")) {
+      // 尾位 st / sp / sk / sc
+      const base = ansType.slice(0, -4).toLowerCase();
+      round.list.forEach((item, gidx) => {
+        const w = item.word.toLowerCase();
+        const isThisType = !item.answer && w.endsWith(base);
+        if (!isThisType) return;
+
+        const attempts = round.attempts[gidx] || 0;
+        const usedAns  = !!round.usedShowAnswer[gidx];
+        const perfect  = (attempts === 1 && !usedAns);
+        if (!perfect) allPerfect = false;
+      });
+    } else {
+      // 正常 digraph
+      const lower = ansType.toLowerCase();
+      round.list.forEach((item, gidx) => {
+        if ((item.answer || "").toLowerCase() !== lower) return;
+        const attempts = round.attempts[gidx] || 0;
+        const usedAns  = !!round.usedShowAnswer[gidx];
+        const perfect  = (attempts === 1 && !usedAns);
+        if (!perfect) allPerfect = false;
+      });
+    }
+
+    if (!allPerfect) {
+      stillWeak.add(ansType);
+    }
+  });
+
+  const newPending = new Set();
+  pendingAnswerTypes.forEach(ansType => {
+    if (stillWeak.has(ansType)) newPending.add(ansType);
+  });
+  pendingAnswerTypes = newPending;
+}
+
+  // ====== Submit 批改 ======
+function submitAll() {
+  // 如果已經全部鎖定，只處理狀態轉換
+  if (round.locked.size === round.list.length) {
+    if (round.mode === 'main' && (round.level === 1 || round.level === 2)) {
+      archiveCurrentLevelResults();
+    } else if (round.mode === 'review') {
+      handleReviewRoundEnd();
+    }
+    updateNextButtonForState();
+    return;
+  }
+
+  let correctNow = 0;
+
+  round.list.forEach((item, gidx) => {
+    if (round.locked.has(gidx)) return;
+
+    round.attempts[gidx] = (round.attempts[gidx] || 0) + 1;
+
+    const tile = gridEl.querySelector(`.tile[data-gidx="${gidx}"]`);
+    tile?.classList.remove('incorrect','correct','revealed');
+
+    if (isSelectionExactlyAnswer(gidx, item)) {
+      // ✅ 完全正確
+      round.locked.add(gidx);
+      tile?.classList.add('correct');
+      correctNow++;
+    } else {
+      // ❌ 錯誤
+      tile?.classList.add('incorrect');
+
+      // ⭐ Lesson 2 特別處理：answer == "" 但學生揀尾位 st / sp / sk / sc
+      if (!item.answer) {
+        const sel = round.selections[gidx];
+        if (sel && sel.size > 0) {
+          const indices   = Array.from(sel).sort((a, b) => a - b);
+          const wordLower = item.word.toLowerCase();
+
+          if (wordLower.length >= 2) {
+            const tailPairs = ["st", "sp", "sk", "sc"];
+            const start = wordLower.length - 2;
+            const tail  = wordLower.slice(start);
+
+            const exactTailSelected =
+              tailPairs.includes(tail) &&
+              indices.length === 2 &&
+              indices[0] === start &&
+              indices[1] === start + 1;
+
+            if (exactTailSelected) {
+              // 👉 記錄尾位錯誤：Finish 顯示 base（st/sp/...），Review 用 "st-end" 類型
+              recordTailMistake(tail);
+            }
+          }
+        }
+      }
+    }
+  });   // ★★ 重要：forEach 要喺呢度收尾 ★★
+
+  // 🔚 批改完之後，如果全部鎖定咗
+  if (round.locked.size === round.list.length) {
+    if (round.mode === 'main' && (round.level === 1 || round.level === 2)) {
+      archiveCurrentLevelResults();
+    } else if (round.mode === 'review') {
+      handleReviewRoundEnd();
+    }
+    updateNextButtonForState();
+  } else if (correctNow === 0) {
+    setFeedback('未有正確，請繼續修改紅色選擇再按 Submit。');
+  } else {
+    setFeedback('');
+  }
+
+  updateShowAnswerButton();
+}
+
+  // ====== Events ======
+  gridEl.addEventListener('click', e => {
+    const ch = e.target.closest('.ch');
+    if (!ch) return;
+    const wrap = ch.closest('.word');
+    const gidx = Number(wrap.dataset.gidx);
+    if (round.locked.has(gidx)) return;
+
+    const lidx = Number(ch.dataset.lidx);
+    if (!round.selections[gidx]) round.selections[gidx] = new Set();
+
+    if (round.selections[gidx].has(lidx)) {
+      round.selections[gidx].delete(lidx);
+      ch.classList.remove('selected');
+    } else {
+      round.selections[gidx].add(lidx);
+      ch.classList.add('selected');
+    }
+
+    setFeedback('');
+    const tile = ch.closest('.tile');
+    tile?.classList.remove('incorrect','revealed');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!gameArea.classList.contains('hidden') && e.key === 'Enter') {
+      e.preventDefault();
+      submitAll();
+    }
+  });
+
+  enterBtn.addEventListener('click', submitAll);
+  showAnswersBtn.addEventListener('click', showAnswers);
+
+  nextLevelBtn.addEventListener('click', () => {
+    // Level 1 → Level 2
+if (round.mode === 'main' && !round.archived) {
+    archiveCurrentLevelResults();
+  }
+    if (round.mode === 'main' && round.level === 1) {
+      const lessonNo = round.lesson;
+      const nextLevel = 2;
+      const list = LESSONS[lessonNo]?.[nextLevel];
+      if (!Array.isArray(list) || list.length !== 12) {
+        alert(`Lesson ${lessonNo} 的 Level 2 尚未加入（需要 12 個字）。`);
+        return;
+      }
+      loadLevel(lessonNo, nextLevel);
+      return;
+    }
+
+    // Level 2 完成
+    if (round.mode === 'main' && round.level === 2) {
+      if (pendingAnswerTypes.size === 0) {
+        finishWithMistakeReport();
+      } else {
+        startReviewRound();
+      }
+      return;
+    }
+
+    // Level 3 Review 完成
+    if (round.mode === 'review') {
+      if (pendingAnswerTypes.size === 0) {
+        finishWithMistakeReport();
+      } else {
+        startReviewRound();
+      }
+    }
+  });
+
+  startBtn.addEventListener('click', () => {
+    const L = Number(lessonSel.value) || 1;
+    mistakeAnswerTypes      = new Set();
+    pendingAnswerTypes      = new Set();
+    reviewUsedWordsByAnswer = {};
+    loadLevel(L, 1);
+  });
+
+  againBtn.addEventListener('click', () => {
+    const lesson = currentLesson || 1;
+    lessonSel.value = String(lesson);
+    mistakeAnswerTypes      = new Set();
+    pendingAnswerTypes      = new Set();
+    reviewUsedWordsByAnswer = {};
+    loadLevel(lesson, 1);
+  });
+
+function initSelectors() {
+  lessonSel.innerHTML = '';
+  for (let i = 1; i <= 29; i++) {
+    const opt = document.createElement('option');
+    opt.value = String(i);
+
+    const label = getDisplayLessonNumber(i);
+    opt.textContent = `Lesson ${label}`;
+
+    if (i === 1) opt.selected = true;
+    lessonSel.appendChild(opt);
+  }
+}
+
+
+  initSelectors();
+
+  // 入頁自動玩 Lesson 1
+  window.addEventListener('load', () => {
+    lessonSel.value = '1';
+    startBtn.click();
+  });
+</script>
+
+</body>
+</html>
