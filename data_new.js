@@ -1436,8 +1436,68 @@ LESSONS[24] = {
 };
 
 
-
 LESSONS[25] = {
+  1: [
+    { word: "tide",                     answer: "i_e"  },
+    { word: "bracket",  display: "brac‧ket",  answer: "ket"  },
+    { word: "vow",                     answer: "ow"  },
+    { word: "voyage",   display: "voy‧age",  answer: "oy,age"  },
+    { word: "pearl",                     answer: "ear"  },
+    { word: "break",                     answer: "ea"  },
+    { word: "take",                     answer: "a_e"  },
+    { word: "roam",                     answer: "oa"  },
+    { word: "ticket",   display: "tic‧ket",   answer: "ic,ket"  },
+    { word: "skull",                     answer: "sk"  },
+    { word: "cinder", display: "cin‧der", answer: "ci,er"  },
+    { word: "ouch",                     answer: "ou,ch"  }
+  ],
+
+  2: [
+    { word: "cottage",  display: "cot‧tage",  answer: "age"   },
+    { word: "hockey",   display: "hoc‧key",   answer: "ey"   },
+    { word: "message",  display: "mes‧sage", answer: "age"   },
+    { word: "slide",                     answer: "i_e"   },
+    { word: "power",    display: "pow‧er",answer: "ow,er"  },
+    { word: "surf",                     answer: "ur"  },
+    { word: "collar", display: "co‧llar", answer: "ar" },
+    { word: "dame",                      answer: "a_e"   },
+    { word: "victor", display: "vic‧tor", answer: "ic,or" },
+    { word: "crush",                      answer: "sh"  },
+    { word: "jacket", display: "jac‧ket", answer: "ket" },
+    { word: "chook",                      answer: "ch,ook"  }
+  ],
+
+  3: [
+    { word: "zeal",   answer: "ea"   },
+    { word: "blown",                     answer: "ow"  },
+    { word: "earth",                     answer: "ear,th"   },
+    { word: "work",               answer: "wor"   },
+    { word: "early",display: "ear‧ly",  answer: "ear,y"   },
+    { word: "cloud",                     answer: "ou"  },
+    { word: "stick",                     answer: "st,ic"  },
+    { word: "goat",                      answer: "oa"  },
+    { word: "pocket", display: "poc‧ket", answer: "ket"   },
+    { word: "fear",                      answer: "ear"   },
+    { word: "moon",   answer: "oo"   },
+    { word: "monster",display: "mon‧ster",    answer: "st,er"   },
+    { word: "soak",                      answer: "oa"  },
+    { word: "letter",display: "let‧ter",     answer: "er"   },
+    { word: "worth",                     answer: "wor,th"   },
+    { word: "bairn", answer: "air" },
+    { word: "roof",  answer: "oo" },
+    { word: "hostage", display: "ho‧stage",    answer: "st,age"   },
+    { word: "worship", display: "wor‧ship",     answer: "wor,sh"   },
+    { word: "zebra",display: "ze‧bra",    answer: "a"   },
+    { word: "groom",                     answer: "oo"   },
+    { word: "mace",                      answer: "ace"   },
+    { word: "house",                     answer: "ou"   },
+    { word: "market", display: "mar‧ket",     answer: "ar,ket"  }
+  ]
+};
+
+
+
+LESSONS[26] = {
   1: [
     { word: "mission", display: "mis‧sion", answer: "sion" },
     { word: "kite",                     answer: "i_e"  },
@@ -1496,7 +1556,7 @@ LESSONS[25] = {
   ]
 };
 
-LESSONS[26] = {
+LESSONS[27] = {
   1: [
     { word: "scurf",   answer: "sc,ur"    },
     { word: "speak",   answer: "sp,ea"    },
@@ -1555,7 +1615,7 @@ LESSONS[26] = {
   ]
 };
 
-LESSONS[27] = {
+LESSONS[28] = {
   1: [
     { word: "cake",    answer: "a_e" },
     { word: "animal",  display: "a‧ni‧mal",  answer: "al"   },
@@ -1612,7 +1672,7 @@ LESSONS[27] = {
   ]
 };
 
-LESSONS[28] = {
+LESSONS[29] = {
   1: [
     { word: "chair",   answer: "ch,air" },
     { word: "gesture",  answer: "ge,ture"},
@@ -1672,7 +1732,7 @@ LESSONS[28] = {
 };
 
 
-LESSONS[29] = {
+LESSONS[30] = {
   1: [
     { word: "cleaned",  answer: "ea,ed"  },
     { word: "needed",   answer: "ee,ded" },
