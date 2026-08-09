@@ -374,6 +374,7 @@ LESSONS[7] = {
     { word: "tong", answer: "ng" },
     { word: "cute", answer: "u_e" },     // l + u_e
     { word: "flume", answer: "lu_e" },     // l + u_e
+  { word: "whelp", answer: "wh" },
   ],
   3: [
     { word: "rule", answer: "ru_e" },
